@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400&display=swap');
+
+:root {
+    --background-color: rgb(224, 228, 204);
+    --font-color-dark: rgb(0, 0, 0);
+    --contrast-color: rgb(167, 219, 216);
+    --accent-color: rgb(243, 134, 48);
+}
+
+body {
+    background-color: var(--background-color);
+    font-family: Lato, Helvetica, Arial, sans-serif;
+    color: var(--font-color-dark);
+    line-height: 1.5em;
+}
+
+#container {
+    background-color: var(--contrast-color);
+    width: 1300px;
+    margin: 0 auto;
+}
+
+header, footer {
+    background-color: var(--accent-color);
+    padding: 20px 10px;
+}
+
+h1, h2 {
+    text-transform: uppercase;
+    color: var(--contrast-color);
+    font-weight: 300;
+    margin: 0;
+}
+
+main {
+    padding: 10px;
+}
+
+ul {
+    list-style: none;
+    padding-left: 0;
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+}
+
+figure {
+    margin: 20px 0 0 0;
+}
+
+figure img {
+    display: block;
+}
+
+figcaption {
+    font-size: 1.2em;
+    font-weight: 300;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.active {
+    background-size: 150px 15px;
+    background: url(../images/active.svg) no-repeat bottom;
+}
+
+.permanent {
+    display: inline-block;
+    padding-bottom: 15px;
+}
+
+[contenteditable="true"] {
+    background-image: url(../images/pen.svg);
+    background-size: 24px;
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    color: var(--contrast-color);
+    outline: 2px dashed var(--contrast-color);
+    margin-bottom: 0;
+    padding: 10px 10px 10px 40px;
+}
