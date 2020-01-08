@@ -22,12 +22,14 @@ function prepareLinks() {
     // TODO: Set an event listener for the click event on every <a> element (or advanced: think of a way to do it with one single handler)
     for (let i = 0; i < aElements.length; i++) {
         aElements[i].addEventListener("click", function (event) {
-            document.activeElement.classList.remove("active");
+            event.preventDefault();
+            for (let j = 0; j < aElements.length; j++) {
+                aElements[j].classList.remove("active");
+            }
             aElements[i].classList.add("active");
-            const imgFirstChildOfA = aElements[i].firstChild;
-            document.getElementById("description").innerText = imgFirstChildOfA.alt.innerText;
+            document.getElementById("description").innerText = aElements[i].children[0].alt;
             // const figureElementImg = document.getElementById("image").firstChild;
-            document.getElementById("placeholderImg").src = imgFirstChildOfA.src;
+            document.getElementById("placeholderImg").src = aElements[i].href;
         });
     }
     // TODO: This function should do the following things:
