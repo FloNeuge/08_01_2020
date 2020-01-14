@@ -19,6 +19,8 @@ function createPlaceholder() {
 function prepareLinks() {
     // TODO: Retrieve all the <a> elements within the unordered list
     const aElements = document.getElementById("thumbs").getElementsByTagName("a");
+    const note = document.getElementById("notes");
+
     // TODO: Set an event listener for the click event on every <a> element (or advanced: think of a way to do it with one single handler)
     for (let i = 0; i < aElements.length; i++) {
         aElements[i].addEventListener("click", function (event) {
@@ -30,17 +32,16 @@ function prepareLinks() {
             document.getElementById("description").innerText = aElements[i].children[0].alt;
             document.getElementById("placeholderImg").src = aElements[i].href;
 
-            const note = document.getElementById("notes");
             const keysArray = document.getElementsByClassName("active");
             const key = keysArray[0].getAttribute("href");
             if (localStorage.getItem(key)) {
-                note.innerHTML=localStorage.getItem(key);
+                note.textContent=localStorage.getItem(key);
             } else {
-                note.innerHTML="Enter your notes here!";
+                note.textContent="Enter your notes here!";
             }
         });
-
     }
+
 
     // TODO: This function should do the following things:
     // - Remove the "active" CSS class from the element (link) that it's currently set to
@@ -58,12 +59,12 @@ function storeNotes() {
     const keysArray = document.getElementsByClassName("active");
     const key = keysArray[0].getAttribute("href");
     // TODO: When the notes field loses focus, store the notes for the current image in local storage
-    note.addEventListener("blur", function (event) {
     // TODO: If the notes field is empty, remove the local storage entry
-    if (note.textContent === "") {
-        localStorage.removeItem(key);
+    note.addEventListener("blur", function (event) {
+    if (this.textContent === "") {
+        window.localStorage.removeItem(key);
     } else {
-        localStorage.setItem(key , this.innerHTML);
+        window.localStorage.setItem(key, this.textContent);
     }
 });
 }
