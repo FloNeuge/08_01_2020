@@ -28,10 +28,20 @@ function prepareLinks() {
             }
             aElements[i].classList.add("active");
             document.getElementById("description").innerText = aElements[i].children[0].alt;
-            // const figureElementImg = document.getElementById("image").firstChild;
             document.getElementById("placeholderImg").src = aElements[i].href;
+
+            const note = document.getElementById("notes");
+            const keysArray = document.getElementsByClassName("active");
+            const key = keysArray[0].getAttribute("href");
+            if (localStorage.getItem(key)) {
+                note.innerHTML=localStorage.getItem(key);
+            } else {
+                note.innerHTML="Enter your notes here!";
+            }
         });
+
     }
+
     // TODO: This function should do the following things:
     // - Remove the "active" CSS class from the element (link) that it's currently set to
     // - Set the clicked element (the link) the "active" CSS class without removing the "permanent" class.
@@ -44,8 +54,18 @@ function prepareLinks() {
  * Stores or deletes the updated notes of an image after they have been changed.
  */
 function storeNotes() {
+    const note = document.getElementById("notes");
+    const keysArray = document.getElementsByClassName("active");
+    const key = keysArray[0].getAttribute("href");
     // TODO: When the notes field loses focus, store the notes for the current image in local storage
+    note.addEventListener("blur", function (event) {
     // TODO: If the notes field is empty, remove the local storage entry
+    if (note.textContent === "") {
+        localStorage.removeItem(key);
+    } else {
+        localStorage.setItem(key , this.innerHTML);
+    }
+});
 }
 
 /**
